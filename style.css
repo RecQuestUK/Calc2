@@ -1,67 +1,28 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+function calculateSavings() {
+  const schools = parseFloat(document.getElementById('schools').value);
+  const priorSpend = parseFloat(document.getElementById('prior-spend').value);
+
+  const totalSavings = (schools * 15 * 195) + (priorSpend * 0.1);
+
+  animateNumber(totalSavings);
 }
 
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-}
+function animateNumber(targetNumber) {
+  const totalSavingsElement = document.getElementById('total-savings');
+  const duration = 1000; // Animation duration in milliseconds
+  const startTime = performance.now();
 
-h1 {
-  text-align: center;
-  color: #333;
-}
+  function step() {
+    const elapsedTime = performance.now() - startTime;
+    const progress = Math.min(elapsedTime / duration, 1);
+    const currentNumber = Math.floor(progress * targetNumber);
 
-.calculator {
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-radius: 5px;
-}
+    totalSavingsElement.textContent = '£' + currentNumber.toLocaleString('en-GB', { maximumFractionDigits: 2 });
 
-.input-group {
-  margin-bottom: 10px;
-}
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-}
-
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.result {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.result p {
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-#total-savings {
-  font-size: 24px;
-  font-weight: bold;
-  color: #4CAF50;
+  requestAnimationFrame(step);
 }
