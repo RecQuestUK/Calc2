@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Savings Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>School Savings Calculator</h1>
+    <div class="calculator">
+      <div class="input-group">
+        <label for="schools">Number of Schools:</label>
+        <input type="number" id="schools" required>
+      </div>
+      <div class="input-group">
+        <label for="prior-spend">Prior Year Supply Spend:</label>
+        <input type="number" id="prior-spend" required>
+      </div>
+      <button onclick="calculateSavings()">Calculate Savings</button>
+      <div class="result">
+        <p>Total Anticipated Savings:</p>
+        <p id="total-savings"></p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
